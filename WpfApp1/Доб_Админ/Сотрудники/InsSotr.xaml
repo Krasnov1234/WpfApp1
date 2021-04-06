@@ -1,0 +1,42 @@
+﻿<Window x:Class="WpfApp1.Доб_Админ.Сотрудники.InsSotr"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Доб_Админ.Сотрудники"
+        mc:Ignorable="d"
+         WindowStartupLocation="CenterScreen"
+        Title="InsSotr" Height="450" Width="957.5" Loaded="Window_Loaded">
+    <Grid  Background="#FF0F17B4">
+        <DataGrid x:Name="DobSotr" Margin="44,34,526,56" SelectionChanged="DobSotr_SelectionChanged"  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Binding="{Binding ID}" Header="id" Width="0.7*"/>
+                <DataGridTextColumn Binding="{Binding Фамилия}" Header="Фамилия" Width="2.4*"/>
+                <DataGridTextColumn Binding="{Binding Имя}" Header="Имя" Width="2*"/>
+                <DataGridTextColumn Binding="{Binding Отчество}" Header="Отчество" Width="2.4*"/>
+
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <TextBox x:Name="txtIdSotr" HorizontalAlignment="Left" Margin="488,59,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtIdSotr_TextChanged"/>
+        <TextBox x:Name="txtФамилия" HorizontalAlignment="Left" Margin="488,102,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtПароль" HorizontalAlignment="Left" Margin="488,226,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtИмя" HorizontalAlignment="Left" Margin="488,145,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtОтчество" HorizontalAlignment="Left" Margin="488,188,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+
+        <Button Content="Назад" HorizontalAlignment="Left" VerticalAlignment="Top" Height="43" Width="132" Click="VhAdm_Sotr" Margin="476,308,0,0" Background="#FFECEC26"/>
+        <Button Content="Добавить" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="132" Click="Insert_Sotr" Margin="653,46,0,0" Background="#FFECEC26"/>
+        <Button Content="Обновить" HorizontalAlignment="Left" VerticalAlignment="Top" Height="37" Width="132" Click="Update_Sotr" Margin="653,92,0,0" Background="#FFECEC26"/>
+        <Button Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="132" Click="Delete_Sotr" Margin="653,141,0,0" Background="#FFECEC26"/>
+        <TextBlock HorizontalAlignment="Left" Margin="488,43,0,0" Text="ID" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="488,82,0,0" Text="Фамилия" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="488,206,0,0" Text="Пароль" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="488,125,0,0" Text="Имя" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="488,168,0,0" Text="Отчество" TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

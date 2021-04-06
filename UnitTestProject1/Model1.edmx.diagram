@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a1f5d298610e42848038785b281656ab" Name="Diagram1">
+        <EntityTypeShape EntityType="gr691_koyModel.InsRasporadokTB" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_koyModel.InsRoleTB" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_koyModel.InsRotaTB" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_koyModel.InsSolderTB" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_koyModel.InsSotrTB" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_koyModel.InsSpisokTB" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_koyModel.InsZvanieTB" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_koyModel.Vhod_SotrudnicaTB" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <AssociationConnector Association="gr691_koyModel.FK__InsRaspor__Id_Ро__40C49C62" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_koyModel.FK__InsSolder__Id_Ра__2610A626" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_koyModel.FK_InsSpisokTB_InsRoleTB" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_koyModel.FK_InsSpisokTB_InsRotaTB" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_koyModel.FK__InsSolder__Id_Зв__251C81ED" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_koyModel.FK__Vhod_Sotr__Id_Па__345EC57D" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_koyModel.FK__Vhod_Sotr__Id_Со__336AA144" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_koyModel.FK_InsSpisokTB_InsSotrTB" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_koyModel.FK_InsSpisokTB_InsZvanieTB" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

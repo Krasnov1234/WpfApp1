@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище gr691_koyModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="InsRasporadokTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Время провидения" Type="date" Nullable="false" />
+          <Property Name="Занятие" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Id_Рота" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsRoleTB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Роли" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsRotaTB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Рота" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsSolderTB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИО" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Id_Звание" Type="int" Nullable="false" />
+          <Property Name="Id_Рата" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsSotrTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Id_Сотрудник" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Id_Пароль" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsSpisokTB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Рота" Type="int" Nullable="false" />
+          <Property Name="Id_Сотрудник" Type="int" Nullable="false" />
+          <Property Name="Id_Звания" Type="int" Nullable="false" />
+          <Property Name="Id_Роли" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsZvanieTB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Звания" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vhod_SotrudnicaTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Сотрудник" Type="int" Nullable="false" />
+          <Property Name="Id_Пароль" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__InsRaspor__Id_Ро__40C49C62">
+          <End Role="InsRotaTB" Type="Self.InsRotaTB" Multiplicity="1" />
+          <End Role="InsRasporadokTB" Type="Self.InsRasporadokTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsRotaTB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsRasporadokTB">
+              <PropertyRef Name="Id_Рота" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__InsSolder__Id_Зв__251C81ED">
+          <End Role="InsZvanieTB" Type="Self.InsZvanieTB" Multiplicity="1" />
+          <End Role="InsSolderTB" Type="Self.InsSolderTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsZvanieTB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsSolderTB">
+              <PropertyRef Name="Id_Звание" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__InsSolder__Id_Ра__2610A626">
+          <End Role="InsRoleTB" Type="Self.InsRoleTB" Multiplicity="1" />
+          <End Role="InsSolderTB" Type="Self.InsSolderTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsRoleTB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsSolderTB">
+              <PropertyRef Name="Id_Рата" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vhod_Sotr__Id_Па__345EC57D">
+          <End Role="InsSotrTB" Type="Self.InsSotrTB" Multiplicity="1" />
+          <End Role="Vhod_SotrudnicaTB" Type="Self.Vhod_SotrudnicaTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsSotrTB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Vhod_SotrudnicaTB">
+              <PropertyRef Name="Id_Пароль" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vhod_Sotr__Id_Со__336AA144">
+          <End Role="InsSotrTB" Type="Self.InsSotrTB" Multiplicity="1" />
+          <End Role="Vhod_SotrudnicaTB" Type="Self.Vhod_SotrudnicaTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsSotrTB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Vhod_SotrudnicaTB">
+              <PropertyRef Name="Id_Сотрудник" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InsSpisokTB_InsRoleTB">
+          <End Role="InsRoleTB" Type="Self.InsRoleTB" Multiplicity="1" />
+          <End Role="InsSpisokTB" Type="Self.InsSpisokTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsRoleTB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsSpisokTB">
+              <PropertyRef Name="Id_Роли" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InsSpisokTB_InsRotaTB">
+          <End Role="InsRotaTB" Type="Self.InsRotaTB" Multiplicity="1" />
+          <End Role="InsSpisokTB" Type="Self.InsSpisokTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsRotaTB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsSpisokTB">
+              <PropertyRef Name="id_Рота" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InsSpisokTB_InsSotrTB">
+          <End Role="InsSotrTB" Type="Self.InsSotrTB" Multiplicity="1" />
+          <End Role="InsSpisokTB" Type="Self.InsSpisokTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsSotrTB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InsSpisokTB">
+              <PropertyRef Name="Id_Сотрудник" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InsSpisokTB_InsZvanieTB">
+          <End Role="InsZvanieTB" Type="Self.InsZvanieTB" Multiplicity="1" />
+          <End Role="InsSpisokTB" Type="Self.InsSpisokTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsZvanieTB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsSpisokTB">
+              <PropertyRef Name="Id_Звания" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище gr691_koyModelContainer">
+          <EntitySet Name="InsRasporadokTB" EntityType="Self.InsRasporadokTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsRoleTB" EntityType="Self.InsRoleTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsRotaTB" EntityType="Self.InsRotaTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsSolderTB" EntityType="Self.InsSolderTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsSotrTB" EntityType="Self.InsSotrTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsSpisokTB" EntityType="Self.InsSpisokTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsZvanieTB" EntityType="Self.InsZvanieTB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vhod_SotrudnicaTB" EntityType="Self.Vhod_SotrudnicaTB" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__InsRaspor__Id_Ро__40C49C62" Association="Self.FK__InsRaspor__Id_Ро__40C49C62">
+            <End Role="InsRotaTB" EntitySet="InsRotaTB" />
+            <End Role="InsRasporadokTB" EntitySet="InsRasporadokTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK__InsSolder__Id_Зв__251C81ED" Association="Self.FK__InsSolder__Id_Зв__251C81ED">
+            <End Role="InsZvanieTB" EntitySet="InsZvanieTB" />
+            <End Role="InsSolderTB" EntitySet="InsSolderTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK__InsSolder__Id_Ра__2610A626" Association="Self.FK__InsSolder__Id_Ра__2610A626">
+            <End Role="InsRoleTB" EntitySet="InsRoleTB" />
+            <End Role="InsSolderTB" EntitySet="InsSolderTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vhod_Sotr__Id_Па__345EC57D" Association="Self.FK__Vhod_Sotr__Id_Па__345EC57D">
+            <End Role="InsSotrTB" EntitySet="InsSotrTB" />
+            <End Role="Vhod_SotrudnicaTB" EntitySet="Vhod_SotrudnicaTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vhod_Sotr__Id_Со__336AA144" Association="Self.FK__Vhod_Sotr__Id_Со__336AA144">
+            <End Role="InsSotrTB" EntitySet="InsSotrTB" />
+            <End Role="Vhod_SotrudnicaTB" EntitySet="Vhod_SotrudnicaTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InsSpisokTB_InsRoleTB" Association="Self.FK_InsSpisokTB_InsRoleTB">
+            <End Role="InsRoleTB" EntitySet="InsRoleTB" />
+            <End Role="InsSpisokTB" EntitySet="InsSpisokTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InsSpisokTB_InsRotaTB" Association="Self.FK_InsSpisokTB_InsRotaTB">
+            <End Role="InsRotaTB" EntitySet="InsRotaTB" />
+            <End Role="InsSpisokTB" EntitySet="InsSpisokTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InsSpisokTB_InsSotrTB" Association="Self.FK_InsSpisokTB_InsSotrTB">
+            <End Role="InsSotrTB" EntitySet="InsSotrTB" />
+            <End Role="InsSpisokTB" EntitySet="InsSpisokTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InsSpisokTB_InsZvanieTB" Association="Self.FK_InsSpisokTB_InsZvanieTB">
+            <End Role="InsZvanieTB" EntitySet="InsZvanieTB" />
+            <End Role="InsSpisokTB" EntitySet="InsSpisokTB" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="gr691_koyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="InsRasporadokTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Время_провидения" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Занятие" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_Рота" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InsRotaTB" Relationship="Self.FK__InsRaspor__Id_Ро__40C49C62" FromRole="InsRasporadokTB" ToRole="InsRotaTB" />
+        </EntityType>
+        <EntityType Name="InsRoleTB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Роли" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="InsSolderTBs" Relationship="Self.FK__InsSolder__Id_Ра__2610A626" FromRole="InsRoleTB" ToRole="InsSolderTB" />
+          <NavigationProperty Name="InsSpisokTBs" Relationship="Self.FK_InsSpisokTB_InsRoleTB" FromRole="InsRoleTB" ToRole="InsSpisokTB" />
+        </EntityType>
+        <EntityType Name="InsRotaTB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Рота" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="InsRasporadokTBs" Relationship="Self.FK__InsRaspor__Id_Ро__40C49C62" FromRole="InsRotaTB" ToRole="InsRasporadokTB" />
+          <NavigationProperty Name="InsSpisokTBs" Relationship="Self.FK_InsSpisokTB_InsRotaTB" FromRole="InsRotaTB" ToRole="InsSpisokTB" />
+        </EntityType>
+        <EntityType Name="InsSolderTB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИО" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Звание" Type="Int32" Nullable="false" />
+          <Property Name="Id_Рата" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InsRoleTB" Relationship="Self.FK__InsSolder__Id_Ра__2610A626" FromRole="InsSolderTB" ToRole="InsRoleTB" />
+          <NavigationProperty Name="InsZvanieTB" Relationship="Self.FK__InsSolder__Id_Зв__251C81ED" FromRole="InsSolderTB" ToRole="InsZvanieTB" />
+        </EntityType>
+        <EntityType Name="InsSotrTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Id_Сотрудник" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_Пароль" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Vhod_SotrudnicaTB" Relationship="Self.FK__Vhod_Sotr__Id_Па__345EC57D" FromRole="InsSotrTB" ToRole="Vhod_SotrudnicaTB" />
+          <NavigationProperty Name="Vhod_SotrudnicaTB1" Relationship="Self.FK__Vhod_Sotr__Id_Со__336AA144" FromRole="InsSotrTB" ToRole="Vhod_SotrudnicaTB" />
+          <NavigationProperty Name="InsSpisokTBs" Relationship="Self.FK_InsSpisokTB_InsSotrTB" FromRole="InsSotrTB" ToRole="InsSpisokTB" />
+        </EntityType>
+        <EntityType Name="InsSpisokTB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Рота" Type="Int32" Nullable="false" />
+          <Property Name="Id_Сотрудник" Type="Int32" Nullable="false" />
+          <Property Name="Id_Звания" Type="Int32" Nullable="false" />
+          <Property Name="Id_Роли" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InsRoleTB" Relationship="Self.FK_InsSpisokTB_InsRoleTB" FromRole="InsSpisokTB" ToRole="InsRoleTB" />
+          <NavigationProperty Name="InsRotaTB" Relationship="Self.FK_InsSpisokTB_InsRotaTB" FromRole="InsSpisokTB" ToRole="InsRotaTB" />
+          <NavigationProperty Name="InsSotrTB" Relationship="Self.FK_InsSpisokTB_InsSotrTB" FromRole="InsSpisokTB" ToRole="InsSotrTB" />
+          <NavigationProperty Name="InsZvanieTB" Relationship="Self.FK_InsSpisokTB_InsZvanieTB" FromRole="InsSpisokTB" ToRole="InsZvanieTB" />
+        </EntityType>
+        <EntityType Name="InsZvanieTB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Звания" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="InsSolderTBs" Relationship="Self.FK__InsSolder__Id_Зв__251C81ED" FromRole="InsZvanieTB" ToRole="InsSolderTB" />
+          <NavigationProperty Name="InsSpisokTBs" Relationship="Self.FK_InsSpisokTB_InsZvanieTB" FromRole="InsZvanieTB" ToRole="InsSpisokTB" />
+        </EntityType>
+        <EntityType Name="Vhod_SotrudnicaTB">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Сотрудник" Type="Int32" Nullable="false" />
+          <Property Name="Id_Пароль" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InsSotrTB" Relationship="Self.FK__Vhod_Sotr__Id_Па__345EC57D" FromRole="Vhod_SotrudnicaTB" ToRole="InsSotrTB" />
+          <NavigationProperty Name="InsSotrTB1" Relationship="Self.FK__Vhod_Sotr__Id_Со__336AA144" FromRole="Vhod_SotrudnicaTB" ToRole="InsSotrTB" />
+        </EntityType>
+        <Association Name="FK__InsRaspor__Id_Ро__40C49C62">
+          <End Role="InsRotaTB" Type="Self.InsRotaTB" Multiplicity="1" />
+          <End Role="InsRasporadokTB" Type="Self.InsRasporadokTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsRotaTB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsRasporadokTB">
+              <PropertyRef Name="Id_Рота" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__InsSolder__Id_Ра__2610A626">
+          <End Role="InsRoleTB" Type="Self.InsRoleTB" Multiplicity="1" />
+          <End Role="InsSolderTB" Type="Self.InsSolderTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsRoleTB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsSolderTB">
+              <PropertyRef Name="Id_Рата" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InsSpisokTB_InsRoleTB">
+          <End Role="InsRoleTB" Type="Self.InsRoleTB" Multiplicity="1" />
+          <End Role="InsSpisokTB" Type="Self.InsSpisokTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsRoleTB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsSpisokTB">
+              <PropertyRef Name="Id_Роли" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InsSpisokTB_InsRotaTB">
+          <End Role="InsRotaTB" Type="Self.InsRotaTB" Multiplicity="1" />
+          <End Role="InsSpisokTB" Type="Self.InsSpisokTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsRotaTB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsSpisokTB">
+              <PropertyRef Name="id_Рота" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__InsSolder__Id_Зв__251C81ED">
+          <End Role="InsZvanieTB" Type="Self.InsZvanieTB" Multiplicity="1" />
+          <End Role="InsSolderTB" Type="Self.InsSolderTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsZvanieTB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsSolderTB">
+              <PropertyRef Name="Id_Звание" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vhod_Sotr__Id_Па__345EC57D">
+          <End Role="InsSotrTB" Type="Self.InsSotrTB" Multiplicity="1" />
+          <End Role="Vhod_SotrudnicaTB" Type="Self.Vhod_SotrudnicaTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsSotrTB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Vhod_SotrudnicaTB">
+              <PropertyRef Name="Id_Пароль" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vhod_Sotr__Id_Со__336AA144">
+          <End Role="InsSotrTB" Type="Self.InsSotrTB" Multiplicity="1" />
+          <End Role="Vhod_SotrudnicaTB" Type="Self.Vhod_SotrudnicaTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsSotrTB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Vhod_SotrudnicaTB">
+              <PropertyRef Name="Id_Сотрудник" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InsSpisokTB_InsSotrTB">
+          <End Role="InsSotrTB" Type="Self.InsSotrTB" Multiplicity="1" />
+          <End Role="InsSpisokTB" Type="Self.InsSpisokTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsSotrTB">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InsSpisokTB">
+              <PropertyRef Name="Id_Сотрудник" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InsSpisokTB_InsZvanieTB">
+          <End Role="InsZvanieTB" Type="Self.InsZvanieTB" Multiplicity="1" />
+          <End Role="InsSpisokTB" Type="Self.InsSpisokTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsZvanieTB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InsSpisokTB">
+              <PropertyRef Name="Id_Звания" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="gr691_koyEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="InsRasporadokTBs" EntityType="Self.InsRasporadokTB" />
+          <EntitySet Name="InsRoleTBs" EntityType="Self.InsRoleTB" />
+          <EntitySet Name="InsRotaTBs" EntityType="Self.InsRotaTB" />
+          <EntitySet Name="InsSolderTBs" EntityType="Self.InsSolderTB" />
+          <EntitySet Name="InsSotrTBs" EntityType="Self.InsSotrTB" />
+          <EntitySet Name="InsSpisokTBs" EntityType="Self.InsSpisokTB" />
+          <EntitySet Name="InsZvanieTBs" EntityType="Self.InsZvanieTB" />
+          <EntitySet Name="Vhod_SotrudnicaTB" EntityType="Self.Vhod_SotrudnicaTB" />
+          <AssociationSet Name="FK__InsRaspor__Id_Ро__40C49C62" Association="Self.FK__InsRaspor__Id_Ро__40C49C62">
+            <End Role="InsRotaTB" EntitySet="InsRotaTBs" />
+            <End Role="InsRasporadokTB" EntitySet="InsRasporadokTBs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__InsSolder__Id_Ра__2610A626" Association="Self.FK__InsSolder__Id_Ра__2610A626">
+            <End Role="InsRoleTB" EntitySet="InsRoleTBs" />
+            <End Role="InsSolderTB" EntitySet="InsSolderTBs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InsSpisokTB_InsRoleTB" Association="Self.FK_InsSpisokTB_InsRoleTB">
+            <End Role="InsRoleTB" EntitySet="InsRoleTBs" />
+            <End Role="InsSpisokTB" EntitySet="InsSpisokTBs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InsSpisokTB_InsRotaTB" Association="Self.FK_InsSpisokTB_InsRotaTB">
+            <End Role="InsRotaTB" EntitySet="InsRotaTBs" />
+            <End Role="InsSpisokTB" EntitySet="InsSpisokTBs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__InsSolder__Id_Зв__251C81ED" Association="Self.FK__InsSolder__Id_Зв__251C81ED">
+            <End Role="InsZvanieTB" EntitySet="InsZvanieTBs" />
+            <End Role="InsSolderTB" EntitySet="InsSolderTBs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vhod_Sotr__Id_Па__345EC57D" Association="Self.FK__Vhod_Sotr__Id_Па__345EC57D">
+            <End Role="InsSotrTB" EntitySet="InsSotrTBs" />
+            <End Role="Vhod_SotrudnicaTB" EntitySet="Vhod_SotrudnicaTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vhod_Sotr__Id_Со__336AA144" Association="Self.FK__Vhod_Sotr__Id_Со__336AA144">
+            <End Role="InsSotrTB" EntitySet="InsSotrTBs" />
+            <End Role="Vhod_SotrudnicaTB" EntitySet="Vhod_SotrudnicaTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InsSpisokTB_InsSotrTB" Association="Self.FK_InsSpisokTB_InsSotrTB">
+            <End Role="InsSotrTB" EntitySet="InsSotrTBs" />
+            <End Role="InsSpisokTB" EntitySet="InsSpisokTBs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InsSpisokTB_InsZvanieTB" Association="Self.FK_InsSpisokTB_InsZvanieTB">
+            <End Role="InsZvanieTB" EntitySet="InsZvanieTBs" />
+            <End Role="InsSpisokTB" EntitySet="InsSpisokTBs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище gr691_koyModelContainer" CdmEntityContainer="gr691_koyEntities1">
+          <EntitySetMapping Name="InsRasporadokTBs">
+            <EntityTypeMapping TypeName="gr691_koyModel.InsRasporadokTB">
+              <MappingFragment StoreEntitySet="InsRasporadokTB">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Время_провидения" ColumnName="Время провидения" />
+                <ScalarProperty Name="Занятие" ColumnName="Занятие" />
+                <ScalarProperty Name="Id_Рота" ColumnName="Id_Рота" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsRoleTBs">
+            <EntityTypeMapping TypeName="gr691_koyModel.InsRoleTB">
+              <MappingFragment StoreEntitySet="InsRoleTB">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Роли" ColumnName="Роли" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsRotaTBs">
+            <EntityTypeMapping TypeName="gr691_koyModel.InsRotaTB">
+              <MappingFragment StoreEntitySet="InsRotaTB">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Рота" ColumnName="Рота" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsSolderTBs">
+            <EntityTypeMapping TypeName="gr691_koyModel.InsSolderTB">
+              <MappingFragment StoreEntitySet="InsSolderTB">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Id_Звание" ColumnName="Id_Звание" />
+                <ScalarProperty Name="Id_Рата" ColumnName="Id_Рата" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsSotrTBs">
+            <EntityTypeMapping TypeName="gr691_koyModel.InsSotrTB">
+              <MappingFragment StoreEntitySet="InsSotrTB">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Id_Сотрудник" ColumnName="Id_Сотрудник" />
+                <ScalarProperty Name="Id_Пароль" ColumnName="Id_Пароль" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsSpisokTBs">
+            <EntityTypeMapping TypeName="gr691_koyModel.InsSpisokTB">
+              <MappingFragment StoreEntitySet="InsSpisokTB">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="id_Рота" ColumnName="id_Рота" />
+                <ScalarProperty Name="Id_Сотрудник" ColumnName="Id_Сотрудник" />
+                <ScalarProperty Name="Id_Звания" ColumnName="Id_Звания" />
+                <ScalarProperty Name="Id_Роли" ColumnName="Id_Роли" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsZvanieTBs">
+            <EntityTypeMapping TypeName="gr691_koyModel.InsZvanieTB">
+              <MappingFragment StoreEntitySet="InsZvanieTB">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Звания" ColumnName="Звания" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vhod_SotrudnicaTB">
+            <EntityTypeMapping TypeName="gr691_koyModel.Vhod_SotrudnicaTB">
+              <MappingFragment StoreEntitySet="Vhod_SotrudnicaTB">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Id_Сотрудник" ColumnName="Id_Сотрудник" />
+                <ScalarProperty Name="Id_Пароль" ColumnName="Id_Пароль" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
